@@ -3,6 +3,8 @@ const app = express();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const path = require("path");
+const process = require("process");
+const port = process.env.PORT || 3000;
 
 app.use(express.static("public"));
 
@@ -10,8 +12,8 @@ app.get("/", (req, res)=> {
     res.sendFile(path.join(__dirname, "index.html"));
 });
 
-http.listen(3000, ()=> {
-    console.log("Port 3000 is listening");
+http.listen(port, ()=> {
+    console.log(`Port ${port} is listening`);
 });
 
 
